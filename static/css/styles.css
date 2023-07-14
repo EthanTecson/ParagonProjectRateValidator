@@ -1,0 +1,35 @@
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.calculate-btn-color
+{
+    background-color: #7bb22d;
+}
+
+.img-center{
+    display: block; 
+    margin: 20px auto;
+}
+
+.results-center{
+    display: block; 
+    text-align: center;
+}
+
+.text-align-class{
+    text-align: center;
+}
+
+body{
+    background-color: #C7C7C7;
+}
+
+.dotted-border{
+    border: none;
+    border-top: 5px dotted;
+    width: 50%;
+}

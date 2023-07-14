@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <img class="img-center" src="/static/images/ParagonLogo.svg" alt="">
+  <h1 class="center">Project Calcualtor</h1>
+
+    <div>
+      <form class="fs-6 mt-2">
+          {{ multiple_employee_form }}
+            <input class="btn btn-secondary fs-6" type="submit" value="Submit">
+      </form>
+    </div>
+
+    <div class="center mt-3 fs-5">
+      <form method="post">
+        {% csrf_token %}
+        {{ formset.management_form }}
+
+        {% if number_of_employees == 1 %}
+          Select Employee: {{ formset.employee }}
+          <br><br>
+          Enter Project Rate: {{ formset.project_rate }}
+          <br><br>
+        {% endif %}
+      
+        {% if number_of_employees > 1 %}
+          {% for form in formset %}
+          <div>
+            Select Employee: {{ form.employee }}
+            Enter Project Rate: ${{ form.project_rate }}
+          </div>
+          <div>
+            Enter Hours per Week on Project: {{ form.hours }}
+            Select Extra Time: {{ form.extra_time }}
+          </div>
+
+          <br><br>
+  
+          {% endfor %}
+        {% endif %}
+  
+        {{target_margin_form}}
+
+        <br><br>
+      
+        <div class="center mt-3">
+          <input class="btn calculate-btn-color fs-4" type="submit" value="Calculate Project">
+        </div>
+      </form>
+    </div>
+
+    <!-- ------------------------------------------------------------ -->
+    {% if weekly_revenue is not None%}
+      <div>
+        <h2 class="center mt-3">Results:</h2>
+      </div>
+      <div class="center fs-4">
+        Total Weekly Revenue: ${{weekly_revenue}}
+      </div>
+    {% endif %}
+    <!-- ------------------------------------------------------------ -->
+
+    <div class="results-center text-align-class fs-4 m-3">
+
+      <div id="target_margin">
+        {% if target_margin is not None%}
+          Target Margin: {{ target_margin }}%
+        {% endif %}
+      </div>
+
+      <div id="comparative_result">
+        {% if comparative_result %}
+          Comparative Result: {{ comparative_result }}
+        {% endif %}
+      </div>
+
+    </div>
+
+
+<div>
+
+{% endblock %}
+
+
+
+  
