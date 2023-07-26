@@ -21,4 +21,6 @@ from LoadedCost.views import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', views.calculator, name="calculator"),
+    path('login/', views.LoginInterfaceView.as_view(), name="login"),
+    path('logout/', views.LogoutInterfaceView.as_view(), name="logout")
 ]

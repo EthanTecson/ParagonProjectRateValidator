@@ -5,10 +5,23 @@ from decimal import Decimal
 from django.forms import formset_factory
 from django.views import View
 from .topic import Project
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.decorators import login_required
 
 
 ######################################################################################################################################################
 
+class LogoutInterfaceView(LogoutView):
+    template_name = 'LoadedCost/logout.html'
+
+
+class LoginInterfaceView(LoginView):
+    template_name = 'LoadedCost/login.html'
+
+######################################################################################################################################################
+
+
+@login_required(login_url='login')
 def calculator(request):
 
     selected_employee = None
